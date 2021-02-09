@@ -1,27 +1,27 @@
 CC=g++
-INCLUDE_DIR := $(MNIST_ML_ROOT)/include 
-SRC := $(MNIST_ML_ROOT)/src 
+INCLUDE_DIR := $(MNIST_ML_ROOT)/include
+SRC := $(MNIST_ML_ROOT)/src
 CFLAGS := -shared -std=c++11 -g
 LIB_DATA := libdata.so
 
 all: $(LIB_DATA)
 
-$(LIB_DATA) : libdir objdir obj/data_handler.o obj/data.o
-	$(CC) $(CFLAGS) -o $(MNIST_ML_ROOT)/lib/$(LIB_DATA) obj/*.o
-	# rm -r $(MNIST_ML_ROOT)/obj 
+$(LIB_DATA) : libdir objdir txobj/data_handler.o txobj/data.o
+	$(CC) $(CFLAGS) -o $(MNIST_ML_ROOT)/txlib/$(LIB_DATA) txobj/*.o
+	rm -r $(MNIST_ML_ROOT)/txobj 
 
 libdir :
-	mkdir -p $(MNIST_ML_ROOT)/lib
+	mkdir -p $(MNIST_ML_ROOT)/txlib
 
 objdir :
-	mkdir -p $(MNIST_ML_ROOT)/obj 
+	mkdir -p $(MNIST_ML_ROOT)/txobj 
 
-$(MNIST_ML_ROOT)/obj/data_handler.o : $(SRC)/data_handler.cc 
-	$(CC) -fPIC $(CFLAGS) -o $(MNIST_ML_ROOT)/obj/data_handler.o -I$(INCLUDE_DIR) -c $(SRC)/data_handler.cc
+txobj/data_handler.o : $(SRC)/data_handler.cc 
+	$(CC) -fPIC $(CFLAGS) -o $(MNIST_ML_ROOT)/txobj/data_handler.o -I$(INCLUDE_DIR) -c $(SRC)/data_handler.cc
 
-$(MNIST_ML_ROOT)/obj/data.o : $(SRC)/data.cc 
-	$(CC) -fPIC $(CFLAGS) -o $(MNIST_ML_ROOT)/obj/data.o -I$(INCLUDE_DIR) -c $(SRC)/data.cc
+txobj/data.o : $(SRC)/data.cc 
+	$(CC) -fPIC $(CFLAGS) -o $(MNIST_ML_ROOT)/txobj/data.o -I$(INCLUDE_DIR) -c $(SRC)/data.cc
 
 clean:
-	rm -r ./lib 
-	rm -r ./obj
+	rm -r $(MNIST_ML_ROOT)/txlib 
+	rm -r $(MNIST_ML_ROOT)/txobj
