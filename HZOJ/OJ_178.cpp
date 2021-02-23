@@ -6,15 +6,22 @@
  ************************************************************************/
 
 #include <iostream>
+#include <cstring>
 using namespace std;
+
+char s[5000000] = {'A'};
 
 int main() {
     int n;
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        cout << 'A' + i;ZZ
+    for (int i = 1; i < n; i++) {
+        int size = strlen(s);
+        for (int j = 0; j < size; j++) {
+            s[2 * size - j] = s[j];
+        }
+        s[size] = 'A' + i;
     }
-
+    cout << s << endl;
     return 0;
 }
 

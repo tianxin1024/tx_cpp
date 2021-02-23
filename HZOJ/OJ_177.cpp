@@ -10,19 +10,19 @@
 using namespace std;
 
 int main() {
-    string str, temp;
+    string str;
     cin >> str;
-    temp = str;
-    for (int i = 0; i < str.size(); i++) {
-        cout << temp << endl;
-        temp[0] = str[0 + 3];
-        temp[1] = str[1 + 3];
-        temp[2] = str[2 - 2];
-        temp[3] = str[3 - 2];
-        temp[4] = str[4 - 2];
-        str = temp;
+    int size = str.size(), n = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            cout << str[n]; 
+            n++;
+            n %= size;
+        }
+        cout << endl;
+        n += size - 2;
+        n %= size;
     }
-
     return 0;
 }
 
