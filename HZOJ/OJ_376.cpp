@@ -12,18 +12,27 @@ using namespace std;
 
 int main() {
     queue<int> que;
-    int n, m, ans;
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int t, f = 0;
-        cin >> t;
+    int n, m, ans = 0;
+    cin >> m >> n;
+    for (int i = 0; i < n; i++) {
+        int word, flag = 0;
+        cin >> word;
         for (int j = 0; j < que.size(); j++) {
-            if (que.front() == t) {
-                f = 1;
+            if (que.front() == word) {
+                flag = 1;
+            }
+            que.push(que.front());
+            que.pop();
+        }
+        if (flag == 0) {
+            ans++;
+            que.push(word);
+            if (que.size() > m) {
+                que.pop();
             }
         }
-
     }
+    cout << ans << endl;
 
     return 0;
 }
