@@ -1,0 +1,3 @@
+/home/tianxin/self/code/tx_cpp/DeepLearning/mnist/build/CMakeFiles/rebuild_cache.dir
+/home/tianxin/self/code/tx_cpp/DeepLearning/mnist/build/CMakeFiles/edit_cache.dir
+/home/tianxin/self/code/tx_cpp/DeepLearning/mnist/build/CMakeFiles/mnist.dir
