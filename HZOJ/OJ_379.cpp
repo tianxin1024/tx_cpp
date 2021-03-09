@@ -19,10 +19,10 @@ using namespace std;
 
 int main() {
     int n;
-    stack<long long int> st1, st2;
+    stack<int> st1, st2;
     cin >> n;
     for (int i = 0; i < n; i++) {
-        long long int t;
+        int t;
         cin >> t;
         if (t == 0) {
             cin >> t;
@@ -33,7 +33,7 @@ int main() {
                 st2.push(max(st2.top(), t));
             }
         } else if (t == 1) {
-            if (st2.empty()) {
+            if (!st2.empty()) {
                 st1.pop();
                 st2.pop();
             }
