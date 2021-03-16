@@ -1,8 +1,8 @@
 /*************************************************************************
-	> File Name: OJ_390.cpp
+	> File Name: OJ_393.cpp
 	> Author: tianxin
 	> Mail: 
-	> Created Time: 2021年03月14日 星期日 23时18分11秒
+	> Created Time: 2021年03月15日 星期一 16时45分18秒
  ************************************************************************/
 
 #include <iostream>
@@ -15,27 +15,29 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <cmath>
 using namespace std;
 
-int n, m, num[100005], rawr;
+int n, m;
+double num[10005], mmax;
 
-int func(int x) {
-    int t = 0; 
+int func(double x) {
+    int cnt = 0; 
     for (int i = 0; i < n; i++) {
-        t += num[i] / x;
+        cnt += num[i] / x;
     }
-    return t;
+    return cnt;
 }
 
-int bs() {
-    int l = 1, r = rawr;
-    while (l != r) {
-        int mid = (l + r + 1) / 2;
+double bs() {
+    double l = 0, r = mmax;
+    while (fabs(l - r) > 0.00005) {
+        double mid = (l + r) / 2;
         int s = func(mid);
         if (s >= m) {
             l = mid;
         } else {
-            r = mid - 1;
+            r = mid;
         }
     }
     return r;
@@ -45,9 +47,10 @@ int main() {
     cin >> n >> m;
     for (int i = 0; i < n; i++) {
         cin >> num[i];
-        rawr = max(rawr, num[i]);
+        mmax = max(mmax, num[i]);
     }
-    cout << bs() << endl;
-    
+    double ans = bs();
+    double t1 = (int)(ans * 100) / 100.0;
+    printf("%.2f\n", t1);
     return 0;
 }
